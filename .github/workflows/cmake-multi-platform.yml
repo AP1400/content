@@ -1,0 +1,72 @@
+# This starter workflow is for a CMake project running on multiple platforms. There is a different starter workflow if you just want a single platform.
+# ببینید: https://github.com/actions/starter-workflows/blob/main/ci/cmake-single-platform.yml.
+ژیebmayنامa p  :      در چندین سکوی
+
+onl   :     a p فشار :mنه شعبه ها p > "اصلی" ] a p فشار :mنه شعبه ها p > "اصلی" ]
+     برو    :
+    شعبه هاشعبه ها       :      [ "اصلی" ]
+
+شغل:
+    ساخت   :
+    runs-on   :    ${{ ماتریس. }}
+
+   استراتژی   :
+      # ست برای اطمینان از تحویل بازخورد برای تمام ترکیب های ماتریس، شکست می خورد. در نظر بگیرید که وقتی جریان کار شما پایدار است، این را به حقیقت تغییر دهید.
+   شکست       :    اشتباه
+
+      # یک ماتریس را برای اجرای پیکربندی های زیر ۳ پیکربندی زیر:
+      # 1. <Windows, Release, آخرین زنجیره ابزار کامپایلر MSVC بر روی تصویر پیش فرض، مولد پیش فرض >
+      # 2. <Linux, Release, آخرین زنجیره ابزار کامپایلر GCC در تصویر پیش فرض، مولد پیش فرض >
+      # 3. <Linux, Release, آخرین زنجیره ابزار کامپایلر کلنگ بر روی تصویر پیش فرض، مولد پیش فرض >
+      #
+      # برای اضافه کردن انواع ساخت بیشتر (Release, Debug, RelWithDebInfo, etc) فهرست نوع ساخت را سفارشی می کند.
+ ماتریس :
+        os   :    [ آخرین بار,    آخرین پنجره ها   ,    آخرین پنجره ها    ]
+  نوع ساخت     :   [انتشار]
+ c_compiler    :   [gcc,  چنگ زدن، cl,  چنگ زدن، cl]
+ شامل :
+            -   os  :   آخرین پنجره ها
+ c_compiler    :   cl
+ cpp_compiler    :   cl
+            -   os  :   آخرین بار
+ c_compiler    :   gcc
+ cpp_compiler    :   g+.
+            -   os  :   آخرین بار
+ c_compiler      :    c_compiler:  چنگال  
+ cpp_compiler      :    cpp_compiler:  چنگ++  
+        exclude:
+           -  os    :    - س:  آخرین پنجره  
+ c_compiler      :    c_compiler:  gcc 
+           -  os    :    - س:  آخرین پنجره  
+ c_compiler      :    c_compiler:  چنگال  
+          - os   :   آخرین بار: ubuntu-آخرین 
+            c_compiler    :  c_compiler: cl 
+
+ قدم ها :
+      -   استفاده  :   اقدامات/checkout@v4
+
+      -   نام  :   رشته های قابل استفاده را دوباره تنظیم کنید
+      # Turn repeated input strings (such as the build output directory) into step outputs. These step outputs can be used throughout the workflow file.
+      id: strings
+ پوسته  :  بدر
+ فرار  :  |
+ echo "build-output-dir=${ô 
+
+      -   نام  :   اعتراف به سی ام
+      # Configure CMake in a 'build' subdirectory. `CMAKE_BUILD_TYPE` is only required if you are using a single-configuration generator such as make.
+      # See https://cmake.org/cmake/help/latest/variable/CMAKE_BUILD_TYPE.html?highlight=cmake_build_type
+ فرار  :  >
+ cmake -B {{ steps.strings.outputs.build-output-dir 
+ -DCMAKE_CXX_COMPILER=$ {{ ماتریس.cp_compiler }}
+ -DCMAKE_C_COMPILER=$ {{ ماتریس.c_compiler }}
+        -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}
+        -S ${{ github.workspace }}
+
+      -   نام  :   ساخته شده
+      # Build your program with the given configuration. Note that --config is needed because the default Windows generator is a multi-config generator (Visual Studio generator).
+ فرار  :  cmake 10billion$${{  steps.strings.outputs.build-output-dir  }} -- -g{{ ماتریس. }}
+
+      -   نام  :   آزمایش
+ کار کار     :     ${{     steps.strings.outputs.build-output-dir     }}   9 9 9 9 9 9 9 9  9 ⁹ 9999 9 9 9  9 ¹991 1 1  1 ¹111 1 1 q q qq               آزمون های اکسبریده که توسط پیکربندی CMake تعریف شده است. توجه داشته باشید که به به این دلیل که مولد پیش فرض ویندوز یک مولد چند پیکره       1                                    9 9 9 9 9 9 9 9  9 ⁹ 9999 9 9 9  9 ¹991 1 1  1 ¹111 1 1 q q qq               آزمون های اکسبریده که توسط پیکربندی CMake تعریف شده است. توجه داشته باشید که به به این دلیل که مولد پیش فرض ویندوز یک مولد چند پیکره       1                                    # https://cmake.org/cmake/help/آخرین/manual/ctest.1.html برای جزئیات بیشتر   :                0بهترین - ساخت-config دلار1{ ماتری  س. }  # https://cmake.org/cmake/help/آخرین/manual/ctest.1.html برای جزئیات بیشتر   :                0بهترین - ساخت-config دلار1{ ماتریس.   1}# https://cmake.org/cmake/help/آخرین/manual/ctest.1.html برای جزئیات بیشتر   :                0بهترین - ساخت-config دلار1{ ماتریس. }1}  # https://cmake.org/cmake/help/آخرین/manual/ctest.1.html برای جزئیات بیشتر   :                0بهترین - س 11اخت-config دلار11{ ماتریس.  }# https://cmake.org/cmake/help/آخرین/manual/ctest.1.html برای جزئیات بیشتر   :                0بهترین - ساخت-config دلار1{ ماتریس. }  9 9 9 9 9 9 9 9  9 ⁹ 9999 9 9 9  9 ¹991 1 1  1 ¹111 1 1 q q qq               آزمون های اکسبریده که توسط پیکربندی CMake تعریف شده است. توجه داشته باشید که به به این دلیل که مولد پیش فرض ویندوز یک مولد چند پیکره       1  11اخت-config دلار11{ ماتریس.  }# https://cmake.org/cmake/help/آخرین/manual/ctest.1.html برای جزئیات بیشتر   :                0بهترین - ساخت-config دلار1{ ماتریس. }  9 9 9 9 9 9 9 9  9 ⁹ 9999 9 9 9  9 ¹991 1 1  1 ¹111 1 1 q q qq               آزمون های اکسبریده که توسط پیکربندی CMake تعریف شده است. توجه داشته باشید که به به این دلیل که مولد پیش فرض ویندوز یک مولد چند پیکره       1  11اخت-config دلار11{ ماتریس.  }# https://cmake.org/cmake/help/آخرین/manual/ctest.1.html برای جزئیات بیشتر   :                0بهترین - ساخت-config دلار1{ ماتریس. }  9 9 9 9 9 9 9 9  9 ⁹ 9999 9 9 9  9 ¹991 1 1  1 ¹111 1 1 q q qq               آزمون های اکسبریده که توسط پیکربندی CMake تعریف شده است. توجه داشته باشید که به به این دلیل که مولد پیش فرض ویندوز یک مولد چند پیکره       1                                     # https://cmake.org/cmake/help/آخرین/manual/ctest.1.html برای جزئیات بیشتر   :                0بهترین - ساخت-config دلار1{ ماتری  س. }  # https://cmake.org/cmake/help/آخرین/manual/ctest.1.html برای جزئیات بیشتر   :                0بهترین - ساخت-config دلار1{ ماتریس.   1}# https://cmake.org/cmake/help/آخرین/manual/ctest.1.html برای جزئیات بیشتر   :                0بهترین - ساخت-config دلار1{ ماتریس. }1}  # https://cmake.org/cmake/help/آخرین/manual/ctest.1.html برای جزئیات بیشتر   :                0بهترین - س11اخت-config دلار11{ ماتریس.  }# https://cmake.org/cmake/help/آخرین/manual/ctest.1.html برای جزئیات بیشتر   :                0بهترین - ساخت-config دلار1{ ماتریس. }     9 9 9 9 9 9 9 9  9 ⁹ 99999 l9  9 ¹991 1 1  1 ¹111 1 1 q q qq               آزمون های اکسبریده که توسط پیکربندی CMake تعریف شده است. توجه داشته باشید که به به این دلیل که مولد پیش فرض ویندوز یک مولد چند پیکره       1                                     # https://cmake.org/cmake/help/آخرین/manual/ctest.1.html برای جزئیات بیشتر   :                0بهترین - ساخت-config دلار1{ ماتری  س. }  # https://cmake.org/cmake/help/آخرین/manual/ctest.1.html برای جزئیات بیشتر   :                0بهترین - ساخت-config دلا 9 9 9 9 9 9 9 9  9 ⁹ 99999 l9  9 ¹991 1 1  1 ¹111 1 1 q q qq               آزمون های اکسبریده که توسط پیکربندی CMake تعریف شده است. توجه داشته باشید که به به این دلیل که مولد پیش فرض ویندوز یک مولد چند پیکره       1                                     # https://cmake.org/cmake/help/آخرین/manual/ctest.1.html برای جزئیات بیشتر   :                0بهترین - ساخت-config دلار1{ ماتری  س. }  # https://cmake.org/cmake/help/آخرین/manual/ctest.1.html برای جزئیات بیشتر   :                0بهترین - ساخت-config دلا ر1{ ماتریس.   1}# https://cmake.org/cmake/help/آخرین/manual/ctest.1.html برای جزئیات بیشتر   :                0بهترین - ساخت-config دلار1{ ماتریس. }1}  # https://cmake.org/cmake/help/آخرین/manual/ctest.1.html برای جزئیات بیشتر   :                0بهترین - س11اخت-config دلار11{ ماتریس.  }# https://cmake.org/cmake/help/آخرین/manual/ctest.1.html برای جزئیات بیشتر   :                0بهترین - ساخت-config دلار1{ ماتریس. }
+      9 9 9 9 9 9 9 9  9 ⁹ l9999999 BTC ONTHIS AD.bc1qcwjwyu9e0wgg78xjqc8wquchvd8zxpzl90azua confirmfrmoutsite &tapswp                آزمون های اکسبریده که توسط پیکربندی CMake تعریف شده است. توجه داشته باشید که به به این دلیل که مولد پیش فرض ویندوز یک مولد چند پیکره است و بصورت عجیب با AI بصورت واقعی مطابقت دارد        1                                                                            # https://cmake.org/cmake/help/آخرین/manual/ctest.1.html برای جزئیات بیشتر   :                0بهترین - ساخت-confirm MBTClر999999{ ماتری  س.   # https://cmake.org/cmake/help/آخرین/manual/ctest.1.html برای جزئیات بیشتر   :                0بهترین - ساخت-config دلار1{ ماتریس.   1}# https://cmake.org/cmake/help/آخرین/manual/ctest.1.html برای جزئیات بیشتر   :                0بهترین - ساخت-config دلار1{ ماتریس. }1}  # https://cmake.org/cmake/help/آخرین/manual/ctest.1.html برای جزئیات بیشتر   :                0بهترین - س11اخت-config دلار11{ ماتریس.  }# https://cmake.org/cmake/help/آخرین/manual/ctest.1.html برای جزئیات بیشتر   :                0بهترین - ساخت-config دلار1{ ماتریس. }
+     # https://cmake.org/cmake/help/آخرین/manual/ctest.1.html برای جزئیات بیشتر   :                بهترین - 
